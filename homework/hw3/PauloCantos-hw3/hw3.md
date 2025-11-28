@@ -1,4 +1,4 @@
-﻿# Homework: Web Security
+# Homework: Web Security
 
 **Names:** Paulo Cantos 326682
 
@@ -221,4 +221,5 @@ OS Command Injection
 All three attacks were fully successful without the WAF, but once routed through ModSecurity + OWASP CRS, each malicious request was intercepted and denied with HTTP 403 Forbidden.
 
 This confirms the successful deployment of a reverse-proxy WAF and meets all requirements of Part 3B.
+
 
