@@ -80,6 +80,8 @@ Botnets significantly enhance the scale and persistence of DNS amplification att
 
 **Screenshot:**  
 
+![sqli_success](./report/screenshots/sqli_success.png)
+
 **Explanation (Why it bypasses Medium):**  
 DVWA Medium restricts input with a visual <select>, but it does not validate the value on the backend, so an attacker can modify the HTML and submit an arbitrary parameter such as 1 OR 1=1. The server executes the query without prepared statements, allowing all rows in the table to be extracted.
 
@@ -96,6 +98,8 @@ DVWA Medium restricts input with a visual <select>, but it does not validate the
 
 **Screenshot:**  
 
+![xss_success](./report/screenshots/xss_success.png)
+
 **Explanation (Why it bypasses Medium):**  
 The Medium filter removes <script> but does not block new HTML tags with events, such as an <img> with onerror. When the image fails to load, the browser executes alert('XSS'), achieving the injection despite partial sanitization.
 
@@ -111,6 +115,8 @@ The Medium filter removes <script> but does not block new HTML tags with events,
 ```
 
 **Screenshot:**  
+
+![cmdinj_success](./report/screenshots/cmdinj_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 DVWA Medium replaces dangerous operators (|, ;, &&, ||) with spaces, but the Linux shell interprets the space as a command separator, executing the ls -laR after the ping. This allows arbitrary commands to run and returns full system listings.
@@ -175,6 +181,8 @@ OWASP CRS includes SQL Injection detection rules from the 9421XX rule family, wh
 
 **Screenshot:**  
 
+![sqli_waf](./report/screenshots/sqli_waf.png)
+
 ### Attack 2 - Reflected XSS (Blocked)
 
 **Payload Attempted:**
@@ -191,6 +199,8 @@ The WAF responded with HTTP 403 Forbidden (xss_waf.png). The JavaScript payload 
 CRS rules from the 9411XX family detect client-side script injections, including event-handler attributes like onerror=. The WAF flagged the request as an XSS attempt and blocked it.
 
 **Screenshot:**  
+
+![xss_waf](./report/screenshots/xss_waf.png)
 
 ### Attack 3 - Command Injection (Blocked)
 
@@ -209,6 +219,8 @@ ModSecurity identified the pipe operator (|) and command-injection patterns asso
 
 **Screenshot:**  
 
+![cmdinj_waf](./report/screenshots/cmdinj_waf.png)
+
 ### Summary of Findings
 
 The WAF successfully demonstrated its effectiveness by detecting and blocking:
@@ -222,13 +234,3 @@ OS Command Injection
 All three attacks were fully successful without the WAF, but once routed through ModSecurity + OWASP CRS, each malicious request was intercepted and denied with HTTP 403 Forbidden.
 
 This confirms the successful deployment of a reverse-proxy WAF and meets all requirements of Part 3B.
-
-## Image Paths
-
-- ./report/screenshots/sqli_success.png
-- ./report/screenshots/xss_success.png
-- ./report/screenshots/cmdinj_success.png
-- ./report/diagram_waf_dvwa.jpg
-- ./report/screenshots/sqli_waf.png
-- ./report/screenshots/xss_waf.png
-- ./report/screenshots/cmdinj_waf.png
