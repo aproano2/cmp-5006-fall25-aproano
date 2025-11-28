@@ -78,7 +78,7 @@ Botnets significantly enhance the scale and persistence of DNS amplification att
 ```
 
 **Screenshot:**  
-![sqli_success.png](/PauloCantos-hw3/report/screenshots/sqli_success.png)
+![sqli_success.png](/hw3/PauloCantos-hw3/report/screenshots/sqli_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 DVWA Medium restricts input with a visual <select>, but it does not validate the value on the backend, so an attacker can modify the HTML and submit an arbitrary parameter such as 1 OR 1=1. The server executes the query without prepared statements, allowing all rows in the table to be extracted.
@@ -94,7 +94,7 @@ DVWA Medium restricts input with a visual <select>, but it does not validate the
 ```
 
 **Screenshot:**  
-![xss_success.png](/PauloCantos-hw3/report/screenshots/xss_success.png)
+![xss_success.png](/hw3/PauloCantos-hw3/report/screenshots/xss_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 The Medium filter removes <script> but does not block new HTML tags with events, such as an <img> with onerror. When the image fails to load, the browser executes alert('XSS'), achieving the injection despite partial sanitization.
