@@ -212,7 +212,7 @@ The WAF blocked the request, returning HTTP 403 Forbidden (cmdinj_waf.png). No o
 ModSecurity identified the pipe operator (|) and command-injection patterns associated with the 9321XX rule set, classifying the request as an OS Command Injection attempt and preventing execution.
 
 **Screenshot:**  
-![cmdinj_waf.png](/homework/hw3/PauloCaos-hw3/report/screenshots/cmdinj_waf.png)
+![cmdinj_waf.png](/homework/hw3/PauloCantos-hw3/report/screenshots/cmdinj_waf.png)
 
 
 ### Summary of Findings
