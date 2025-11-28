@@ -94,7 +94,7 @@ DVWA Medium restricts input with a visual <select>, but it does not validate the
 ```
 
 **Screenshot:**  
-![xss_success.png](/PauloCantos-hw3/PauloCantos-hw3/report/screenshots/xss_success.png)
+![xss_success.png](/PauloCantos-hw3/report/screenshots/xss_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 The Medium filter removes <script> but does not block new HTML tags with events, such as an <img> with onerror. When the image fails to load, the browser executes alert('XSS'), achieving the injection despite partial sanitization.
