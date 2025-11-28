@@ -94,7 +94,7 @@ DVWA Medium restricts input with a visual <select>, but it does not validate the
 ```
 
 **Screenshot:**  
-![xss_success.png](/hw3/PauloCantos-hw3/report/screenshots/xss_success.png)
+![xss_success.png](/homework/hw3/PauloCantos-hw3/report/screenshots/xss_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 The Medium filter removes <script> but does not block new HTML tags with events, such as an <img> with onerror. When the image fails to load, the browser executes alert('XSS'), achieving the injection despite partial sanitization.
@@ -110,7 +110,7 @@ The Medium filter removes <script> but does not block new HTML tags with events,
 ```
 
 **Screenshot:**  
-![cmdinj_success.png](/PauloCantos-hw3/report/screenshots/cmdinj_success.png)
+![cmdinj_success.png](/homework/hw3/PauloCantos-hw3/report/screenshots/cmdinj_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 DVWA Medium replaces dangerous operators (|, ;, &&, ||) with spaces, but the Linux shell interprets the space as a command separator, executing the ls -laR after the ping. This allows arbitrary commands to run and returns full system listings.
@@ -145,7 +145,7 @@ Architecture:
 Client -> Nginx (ModSecurity + OWASP CRS) -> DVWA
 
 Diagram:  
-![diagram_waf_dvwa.jpg](/report/diagram_waf_dvwa.jpg)
+![diagram_waf_dvwa.jpg](/homework/hw3/PauloCantos-hw3/report/diagram_waf_dvwa.jpg)
 
 The WAF listens on port 8080, inspects each incoming request using CRS detection rules, and only forwards requests to DVWA when no security violations are detected.
 
@@ -172,7 +172,7 @@ The WAF immediately returned HTTP 403 Forbidden (sqli_waf.png), blocking the req
 OWASP CRS includes SQL Injection detection rules from the 9421XX rule family, which identify logical operators such as OR 1=1 as classical SQLi patterns. The rule triggered and the request was denied.
 
 **Screenshot:**  
-![sqli_waf.png](/report/screenshots/sqli_waf.png)
+![sqli_waf.png](/homework/hw3/PauloCantos-hw3/report/screenshots/sqli_waf.png)
 
 ### Attack 2 - Reflected XSS (Blocked)
 
@@ -189,7 +189,7 @@ The WAF responded with HTTP 403 Forbidden (xss_waf.png). The JavaScript payload 
 CRS rules from the 9411XX family detect client-side script injections, including event-handler attributes like onerror=. The WAF flagged the request as an XSS attempt and blocked it.
 
 **Screenshot:**  
-![xss_waf.png](/report/screenshots/xss_waf.png)
+![xss_waf.png](/homework/hw3/PauloCantos-hw3/report/screenshots/xss_waf.png)
 
 ### Attack 3 - Command Injection (Blocked)
 
@@ -206,7 +206,7 @@ The WAF blocked the request, returning HTTP 403 Forbidden (cmdinj_waf.png). No o
 ModSecurity identified the pipe operator (|) and command-injection patterns associated with the 9321XX rule set, classifying the request as an OS Command Injection attempt and preventing execution.
 
 **Screenshot:**  
-![cmdinj_waf.png](/report/screenshots/cmdinj_waf.png)
+![cmdinj_waf.png](/homework/hw3/PauloCaos-hw3/report/screenshots/cmdinj_waf.png)
 
 ### Summary of Findings
 
