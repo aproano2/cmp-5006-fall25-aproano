@@ -94,7 +94,7 @@ DVWA Medium restricts input with a visual <select>, but it does not validate the
 ```
 
 **Screenshot:**  
-![xss_success.png](/report/screenshots/xss_success.png)
+![xss_success.png](/PauloCantos-hw3/report/screenshots/xss_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 The Medium filter removes <script> but does not block new HTML tags with events, such as an <img> with onerror. When the image fails to load, the browser executes alert('XSS'), achieving the injection despite partial sanitization.
@@ -110,7 +110,7 @@ The Medium filter removes <script> but does not block new HTML tags with events,
 ```
 
 **Screenshot:**  
-![cmdinj_success.png](/report/screenshots/cmdinj_success.png)
+![cmdinj_success.png](/PauloCantos-hw3/report/screenshots/cmdinj_success.png)
 
 **Explanation (Why it bypasses Medium):**  
 DVWA Medium replaces dangerous operators (|, ;, &&, ||) with spaces, but the Linux shell interprets the space as a command separator, executing the ls -laR after the ping. This allows arbitrary commands to run and returns full system listings.
