@@ -79,7 +79,9 @@ Botnets significantly enhance the scale and persistence of DNS amplification att
 ```
 
 **Screenshot:**  
-![sqli_success.png](./report/screenshots/sqli_success.png)
+<p align="center">
+  <img src="./report/screenshots/sqli_success.png" width="70%">
+</p>
 
 
 
@@ -99,7 +101,9 @@ DVWA Medium restricts input with a visual <select>, but it does not validate the
 ```
 
 **Screenshot:**  
-![xss_success.png](./report/screenshots/xss_success.png)
+<p align="center">
+  <img src="./report/screenshots/xss_success.png" width="70%">
+</p>
 
 
 
@@ -119,7 +123,9 @@ The Medium filter removes <script> but does not block new HTML tags with events,
 ```
 
 **Screenshot:**  
-![cmdinj_success.png](./report/screenshots/cmdinj_success.png)
+<p align="center">
+  <img src="./report/screenshots/cmdinj_success.png" width="70%">
+</p>
 
 
 
@@ -157,7 +163,9 @@ Architecture:
 Client -> Nginx (ModSecurity + OWASP CRS) -> DVWA
 
 Diagram:  
-![diagram_waf_dvwa.jpg](./report/diagram_waf_dvwa.jpg)
+<p align="center">
+  <img src="./report/diagram_waf_dvwa.jpg" width="70%">
+</p>
 
 
 
@@ -188,7 +196,9 @@ The WAF immediately returned HTTP 403 Forbidden (sqli_waf.png), blocking the req
 OWASP CRS includes SQL Injection detection rules from the 9421XX rule family, which identify logical operators such as OR 1=1 as classical SQLi patterns. The rule triggered and the request was denied.
 
 **Screenshot:**  
-![sqli_waf.png](./report/screenshots/sqli_waf.png)
+<p align="center">
+  <img src="./report/screenshots/sqli_waf.png" width="70%">
+</p>
 
 
 
@@ -209,7 +219,9 @@ The WAF responded with HTTP 403 Forbidden (xss_waf.png). The JavaScript payload 
 CRS rules from the 9411XX family detect client-side script injections, including event-handler attributes like onerror=. The WAF flagged the request as an XSS attempt and blocked it.
 
 **Screenshot:**  
-![xss_waf.png](./report/screenshots/xss_waf.png)
+<p align="center">
+  <img src="./report/screenshots/xss_waf.png" width="70%">
+</p>
 
 
 
@@ -230,7 +242,9 @@ The WAF blocked the request, returning HTTP 403 Forbidden (cmdinj_waf.png). No o
 ModSecurity identified the pipe operator (|) and command-injection patterns associated with the 9321XX rule set, classifying the request as an OS Command Injection attempt and preventing execution.
 
 **Screenshot:**  
-![cmdinj_waf.png](./report/screenshots/cmdinj_waf.png)
+<p align="center">
+  <img src="./report/screenshots/cmdinj_waf.png" width="70%">
+</p>
 
 
 
