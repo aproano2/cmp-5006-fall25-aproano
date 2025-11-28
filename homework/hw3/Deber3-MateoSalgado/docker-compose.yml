@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa
+    expose:
+      - "80"
+    networks:
+      - waf-network
+
+  waf:
+    image: owasp/modsecurity-crs:nginx
+    container_name: waf
+    ports:
+      - "8080:8080"
+    environment:
+      - BACKEND=http://dvwa:80
+      - PORT=8080
+      - PARANOIA=1
+      - PROXY=1
+      - EXECUTING_PARANOIA=1
+      - ENFORCE_BODYPROC_URLENCODED=1
+    networks:
+      - waf-network
+    depends_on:
+      - dvwa
+
+networks:
+  waf-network:
+    driver: bridge
