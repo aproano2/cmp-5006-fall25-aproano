@@ -1,0 +1,55 @@
+volumes:
+  dvwa:
+  bunkerweb_data:
+
+networks:
+  dvwa:
+  proxy:
+    driver: bridge
+
+services:
+  bunkerweb:
+    image: bunkerity/bunkerweb-all-in-one:1.6.6
+    container_name: bunkerweb
+    restart: unless-stopped
+    environment:
+      - SERVER_NAME=localhost
+      - USE_REVERSE_PROXY=yes
+      - REVERSE_PROXY_URL=/
+      - REVERSE_PROXY_HOST=http://dvwa:80
+      - USE_MODSECURITY=yes
+      - USE_MODSECURITY_CRS=yes
+    ports:
+      - "8080:8080"      # BunkerWeb (con WAF) desde el host
+    networks:
+      - proxy
+    depends_on:
+      - dvwa
+
+
+  dvwa:
+    image: ghcr.io/digininja/dvwa:latest
+    pull_policy: always
+    environment:
+      - DB_SERVER=db
+    depends_on:
+      - db
+    ports:
+      - "4280:80"          # ACCESO DIRECTO SIN WAF
+    networks:
+      - dvwa
+      - proxy
+    restart: unless-stopped
+
+  db:
+    image: docker.io/library/mariadb:10
+    environment:
+      - MYSQL_ROOT_PASSWORD=dvwa
+      - MYSQL_DATABASE=dvwa
+      - MYSQL_USER=dvwa
+      - MYSQL_PASSWORD=p@ssw0rd
+    volumes:
+      - dvwa:/var/lib/mysql
+    networks:
+      - dvwa
+    restart: unless-stopped
