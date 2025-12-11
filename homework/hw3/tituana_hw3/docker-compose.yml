@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa-app
+    networks:
+      - dvwa-network
+
+  waf:
+    image: owasp/modsecurity-crs:nginx-alpine
+    container_name: modsecurity-waf
+    ports:
+      - "80:8080"
+    depends_on:
+      - dvwa
+    environment:
+      - BACKEND=http://dvwa:80
+      - PROXY=1
+      - MODSEC_RULE_ENGINE=On
+      - PARANOIA=2
+      - ANOMALY_INBOUND=5
+      - ANOMALY_OUTBOUND=4
+      - PORT=8080
+      - SSL_PORT=8443
+    volumes:
+      - ./waf-logs:/var/log/nginx
+    networks:
+      - dvwa-network
+
+networks:
+  dvwa-network:
+    driver: bridge
