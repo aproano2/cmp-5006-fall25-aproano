@@ -39,3 +39,4 @@ AI systems, especially those processing sensitive data, require robust security 
 ### Assume we deploy a new AI-driven predictive policing system deployed in a major Latin American city. Describe how historical bias present in the training data (e.g., police reporting practices)  could cause the system to disproportionately target and surveil marginalized communities , resulting in discriminatory legal effects (a violation of LOPDP’s principle of proportionality  and the right to object to automated decisions ).   
 
 ### Explain the security threat known as "Model Memorization" or "Data Leakage" in generative AI. If an AI chatbot (used internally by a hospital) accidentally memorizes and reveals unmasked patient health information (PHI) shared during a training prompt, what specific privacy right under the LOPDP would be violated?   
+
